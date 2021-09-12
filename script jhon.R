@@ -3,65 +3,7 @@ library(htmltools)
 library(ggplot2)
 library(gapminder)
 library(dplyr)
-library(ggplot2)
-library(gifski)
-library(Rcpp)
-library(dplyr)
-library(gganimate)
-library(remotes)
-library(gtExtras)
-library(googleVis)
-library(readxl)
-library(plotly)
-library(xkcd)
-
-setwd("C:/Users/Usuario/Downloads")
-cor1<-read_excel("corrupcion.xlsx")
-cor<-cor1[-c(11:14),]
-cor<-cor[,-c(8)]
-cor<-cor[,-c(1:2)]
-names(cor) <- c("Manejo_irregular","corrup_pred&mil","Soborno","perd_indirecta","inv_directa")
-fechas<-c("00s","10s","20s","30s","40s","50s","60s","70s","80s","90s")
-fechas<-cbind(fechas)
-cor2<-data.frame(fechas, cor)
-
-## Limpieza de datos
-cor$Manejo_irregular= as.numeric(cor$Manejo_irregular)
-cor$`corrup_pred&mil`= as.numeric(cor$`corrup_pred&mil`)
-cor$Soborno= as.numeric(cor$Soborno)
-cor$perd_indirecta= as.numeric(cor$perd_indirecta)
-cor$inv_directa= as.numeric(cor$inv_directa)
-
-
-st <- as.Date("1990-1-1")
-en <- as.Date("1900-1-1")
-fech_o <- seq(en, st, by = "+10 year")
-
-
-st1 <- as.Date("1999-12-31")
-en1 <- as.Date("1909-12-31")
-fech_f <- seq(en1, st1, by = "+10 year")
-
-cor = data.frame(fech_o, fech_f, cor)
-
-##Mostrar la tabla
-cor_gt <- gt(cor)
-cor_gt
-
-#Poner porcentajes
-plus_percent <- function(.x) {
-  glue::glue("{.x}%")
-}
-
-cor_gt <- cor_gt %>%
-  fmt("Manejo_irregular", fns = plus_percent) %>%
-  fmt("corrup_pred.mil", fns = plus_percent) %>%
-  fmt("Soborno", fns = plus_percent)%>%
-  fmt("perd_indirecta", fns = plus_percent)%>%
-  fmt("inv_directa", fns = plus_percent)
-cor_gt
-
-#Resaltar datos
+lib
 cor_gt <- cor_gt %>%
   tab_style(
     style = cell_fill(color = "#F7EFB2"),
